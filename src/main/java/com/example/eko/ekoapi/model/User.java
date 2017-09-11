@@ -2,28 +2,43 @@ package com.example.eko.ekoapi.model;
  
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
 	private String name;
+	
+	@Column(name="email")
 	private String email;
 	
-	// This will be unique
 	private String password;
 	
 	private Date createDate;
 	private Date modifyDate;
 
+	public User() {
+		
+	}
+	
+	public User(String name, String email, String password) {
+		setName(name);
+		setEmail(email);
+		setPassword(password);
+	}
+	
 	public Integer getId() {
 		return this.id;
 	}
