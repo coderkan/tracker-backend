@@ -11,17 +11,20 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email"})})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"id", "email"})})
 public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id", unique=true)
 	private Integer id;
 	
 	private String name;
 	
-	@Column(name="email")
+	@NotNull
+	@Column(name="email", unique=true, length=50)
 	private String email;
 	
 	private String password;
