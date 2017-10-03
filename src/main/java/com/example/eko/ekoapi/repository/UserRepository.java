@@ -9,4 +9,5 @@ import com.example.eko.ekoapi.model.User;
 //CRUD refers Create, Read, Update, Delete
 public interface UserRepository extends CrudRepository<User, Long>{
 	public User findByEmail(String email);
+	public User findByName(String name);
 }
